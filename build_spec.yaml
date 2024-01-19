@@ -32,8 +32,4 @@ steps:
     command: |
       cd $OCI_PRIMARY_SOURCE_DIR
       ls -ltr
-      echo "OCI_TRIGGER_SOURCE_BRANCH_NAME: ${OCI_TRIGGER_SOURCE_BRANCH_NAME}" || echo
-      echo "OCI_TRIGGER_SOURCE_URL: ${OCI_TRIGGER_SOURCE_URL}" || echo
-      echo "OCI_TRIGGER_EVENT_TYPE: ${OCI_TRIGGER_EVENT_TYPE}" || echo
-      echo "OCI_PRIMARY_SOURCE_URL: ${OCI_PRIMARY_SOURCE_URL}" || echo
-      echo "OCI_PRIMARY_SOURCE_BRANCH_NAME: ${OCI_PRIMARY_SOURCE_BRANCH_NAME}" || echo
+      env
