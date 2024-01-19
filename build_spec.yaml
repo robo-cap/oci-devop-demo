@@ -29,18 +29,11 @@ steps:
   - type: Command
     name: first-step
     timeoutInSeconds: 650
-    failImmediatelyOnError: true
     command: |
       cd $OCI_PRIMARY_SOURCE_DIR
       ls -ltr
-      echo "OCI_TRIGGER_SOURCE_BRANCH_NAME: ${OCI_TRIGGER_SOURCE_BRANCH_NAME}" 
-      echo "OCI_TRIGGER_SOURCE_URL: ${OCI_TRIGGER_SOURCE_URL}" 
-      echo "OCI_TRIGGER_EVENT_TYPE: ${OCI_TRIGGER_EVENT_TYPE}"
-      echo "OCI_PRIMARY_SOURCE_URL: ${OCI_PRIMARY_SOURCE_URL}"
-      echo "OCI_PRIMARY_SOURCE_BRANCH_NAME: ${OCI_PRIMARY_SOURCE_BRANCH_NAME}"
-
-    onFailure:
-      - type: Command
-        command: |
-          echo "failed"
-        timeoutInSeconds: 400
+      echo "OCI_TRIGGER_SOURCE_BRANCH_NAME: ${OCI_TRIGGER_SOURCE_BRANCH_NAME}" || echo
+      echo "OCI_TRIGGER_SOURCE_URL: ${OCI_TRIGGER_SOURCE_URL}" || echo
+      echo "OCI_TRIGGER_EVENT_TYPE: ${OCI_TRIGGER_EVENT_TYPE}" || echo
+      echo "OCI_PRIMARY_SOURCE_URL: ${OCI_PRIMARY_SOURCE_URL}" || echo
+      echo "OCI_PRIMARY_SOURCE_BRANCH_NAME: ${OCI_PRIMARY_SOURCE_BRANCH_NAME}" || echo
