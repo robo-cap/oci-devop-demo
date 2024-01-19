@@ -1,0 +1,51 @@
+version: 0.1
+component: build
+timeoutInSeconds: 10000
+shell: bash
+failImmediatelyOnError: true
+env:
+  variables:
+    key: "value"
+  #   key: "value"
+  # vaultVariables:
+  #   key: "secret-id"
+  # exportedVariables:
+  #   - variable
+  #   - variable
+  #   - variable
+
+# inputArtifacts:
+#   - name: artifact-name
+#     type: GENERIC_ARTIFACT
+#     artifactId: "artifact-ocid"
+#     registryId: OCID of the Artifact Registry
+#     path: path of the artifact in the Registry
+#     version: version of the artifact
+#     location: target-location
+#   - name: artifact-name
+#     type: STAGE_ARTIFACT
+#     location: target-location
+#   - name: artifact-name
+#     type: URL
+#     url: downloadable link
+#     location: target-location
+
+steps:
+  - type: Command
+    name: step-name
+    timeoutInSeconds: 650
+    failImmediatelyOnError: true
+    command: |
+      cd $OCI_PRIMARY_SOURCE_DIR
+      ls -ltr
+      echo "OCI_TRIGGER_SOURCE_BRANCH_NAME: ${OCI_TRIGGER_SOURCE_BRANCH_NAME}" 
+      echo "OCI_TRIGGER_SOURCE_URL: ${OCI_TRIGGER_SOURCE_URL}" 
+      echo "OCI_TRIGGER_EVENT_TYPE: ${OCI_TRIGGER_EVENT_TYPE}"
+      echo "OCI_PRIMARY_SOURCE_URL: ${OCI_PRIMARY_SOURCE_URL}"
+      echo "OCI_PRIMARY_SOURCE_BRANCH_NAME: ${OCI_PRIMARY_SOURCE_BRANCH_NAME}"
+
+    onFailure:
+      - type: Command
+        command: |
+          echo "failed"
+        timeoutInSeconds: 400
