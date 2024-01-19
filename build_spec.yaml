@@ -23,7 +23,6 @@ env:
 #     version: version of the artifact
 #     location: target-location
 #   - name: artifact-name
-#     type: STAGE_ARTIFACT
 
 
 steps:
