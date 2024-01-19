@@ -24,7 +24,6 @@ env:
 #     location: target-location
 #   - name: artifact-name
 #     type: STAGE_ARTIFACT
-#     location: target-location
 
 
 steps:
