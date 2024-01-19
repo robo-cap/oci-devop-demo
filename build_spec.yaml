@@ -32,7 +32,7 @@ env:
 
 steps:
   - type: Command
-    name: step-name
+    name: first-step
     timeoutInSeconds: 650
     failImmediatelyOnError: true
     command: |
