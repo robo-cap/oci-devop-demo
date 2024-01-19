@@ -8,7 +8,7 @@ env:
     key: "value"
   #   key: "value"
   vaultVariables:
-    github-token: "ocid1.vaultsecret.oc1.eu-frankfurt-1.amaaaaaawe6j4fqaxhkfh3clqwhhtrilw4trnn2yc4rlufgjgyoyts5byala"
+    githubToken: "ocid1.vaultsecret.oc1.eu-frankfurt-1.amaaaaaawe6j4fqaxhkfh3clqwhhtrilw4trnn2yc4rlufgjgyoyts5byala"
   # exportedVariables:
   #   - variable
   #   - variable
@@ -41,7 +41,7 @@ steps:
       curl -L \
         -X POST \
         -H "Accept: application/vnd.github+json" \
-        -H "Authorization: Bearer ${github-token}" \
+        -H "Authorization: Bearer ${githubToken}" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/robo-cap/oci-devop-demo/statuses/${OCI_TRIGGER_COMMIT_HASH} \
         -d '{"state":"success","target_url":"https://cloud.oracle.com/devops-build/projects/ocid1.devopsproject.oc1.eu-frankfurt-1.amaaaaaawe6j4fqa56gvcdu3kge2e52x7b7x6fiq6d2pdxt6ggvh5fqnriqq/builds-history?region=eu-frankfurt-1","description":"The build succeeded!","context":"continuous-integration/oci-devops"}'
