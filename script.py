@@ -17,13 +17,8 @@ import sys
 # More data: https://docs.github.com/en/rest/commits/statuses?apiVersion=2022-11-28 #
 #####################################################################################
 
-if len(sys.argv) < 2:
-    print("No status provided", file=sys.stderr)
-    exit(1)
-else:
-    state = sys.argv[1]
 
-print(state)
+
 # Parameters required to be defined on the pipeline.
 GITHUB_TOKEN = os.environ.get("githubToken")
 DEVOPS_PROJECT_ID = os.environ.get("DEVOPS_PROJECT_ID", "DEFAULT")
@@ -38,7 +33,11 @@ BUILD_RUN_ID = os.environ.get("OCI_BUILD_RUN_ID")
 REGION = os.environ.get("OCI_RESOURCE_PRINCIPAL_REGION")
 
 
-
+if len(sys.argv) < 2:
+    print("No status provided", file=sys.stderr)
+    exit(1)
+else:
+    state = sys.argv[1]
 
 match = re.match(r'https://github.com/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)\.git', SOURCE_REPO)
 if match:
@@ -54,9 +53,11 @@ r = requests.post(
         "Authorization": f"Bearer {GITHUB_TOKEN}",
         "X-GitHub-Api-Version": "2022-11-28"
     },
-    data={
+    json={
         'state': 'success',
-        'target_url':f'https://cloud.oracle.com/devops-build/projects/{DEVOPS_PROJECT_ID}/build-pipelines/{BUILD_PIPELINE_ID}/build-runs/{BUILD_RUN_ID}?region={REGION}'
+        'target_url':f'https://cloud.oracle.com/devops-build/projects/{DEVOPS_PROJECT_ID}/build-pipelines/{BUILD_PIPELINE_ID}/build-runs/{BUILD_RUN_ID}?region={REGION}',
+        'description': 'OCI DevOps pipeline execution status',
+        'context': 'continuous-integration/oci-devops'
         }
     )
 
