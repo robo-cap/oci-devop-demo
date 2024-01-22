@@ -39,6 +39,12 @@ steps:
       cd $OCI_PRIMARY_SOURCE_DIR
       ls -ltr
       env
+      sdadsa
+    onFailure:
+      - type: Command
+        command: |
+          python3 script.py error
+        timeoutInSeconds: 400
   
   - type: Command
     name: end
