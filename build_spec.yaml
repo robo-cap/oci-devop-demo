@@ -30,7 +30,7 @@ steps:
     name: first-step
     timeoutInSeconds: 650
     command: |
-      python script.py pending
+      python3 script.py pending
 
   - type: Command
     name: first-step
@@ -44,4 +44,4 @@ steps:
     name: push commit status
     timeoutInSeconds: 650
     command: |
-      python script.py success
+      python3 script.py success
