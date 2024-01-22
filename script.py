@@ -47,7 +47,7 @@ else:
     exit(1)
 
 r = requests.post(
-    f'https://api.github.com/repos/{account}/{repo}/statuses/${COMMIT_ID}',
+    f'https://api.github.com/repos/{account}/{repo}/statuses/{COMMIT_ID}',
     headers={
         "Accept": "application/vnd.github+json",
         "Authorization": f"Bearer {GITHUB_TOKEN}",
