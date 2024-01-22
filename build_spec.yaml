@@ -27,7 +27,7 @@ env:
 
 steps:
   - type: Command
-    name: first-step
+    name: starting
     timeoutInSeconds: 650
     command: |
       python3 script.py pending
@@ -41,7 +41,7 @@ steps:
       env
   
   - type: Command
-    name: push commit status
+    name: end
     timeoutInSeconds: 650
     command: |
       python3 script.py success
