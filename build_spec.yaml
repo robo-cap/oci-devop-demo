@@ -39,7 +39,7 @@ steps:
       cd $OCI_PRIMARY_SOURCE_DIR
       ls -ltr
       env
-      exit 1
+      dsadsd
     onFailure:
       - type: Command
         command: |
