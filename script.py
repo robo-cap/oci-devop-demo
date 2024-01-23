@@ -37,7 +37,11 @@ if len(sys.argv) < 2:
     print("No status provided", file=sys.stderr)
     exit(1)
 else:
-    state = sys.argv[1]
+    state = sys.argv[1].strip().lower()
+
+if state not in ('error','failure','pending','success'):
+    print("State not supported", file=sys.stderr)
+    exit(1)
 
 match = re.match(r'https://github.com/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)\.git', SOURCE_REPO)
 if match:
@@ -54,7 +58,7 @@ r = requests.post(
         "X-GitHub-Api-Version": "2022-11-28"
     },
     json={
-        'state': 'success',
+        'state': state,
         'target_url':f'https://cloud.oracle.com/devops-build/projects/{DEVOPS_PROJECT_ID}/build-pipelines/{BUILD_PIPELINE_ID}/build-runs/{BUILD_RUN_ID}?region={REGION}',
         'description': 'OCI DevOps pipeline execution status',
         'context': 'continuous-integration/oci-devops'
