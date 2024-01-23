@@ -28,23 +28,23 @@ env:
 steps:
   - type: Command
     name: starting
-    timeoutInSeconds: 650
+    timeoutInSeconds: 60
     command: |
       python3 script.py pending
 
   - type: Command
     name: first-step
-    timeoutInSeconds: 650
+    timeoutInSeconds: 300
     command: |
       cd $OCI_PRIMARY_SOURCE_DIR
       ls -ltr
       env
-      sdadsa
+      exit 1
     onFailure:
       - type: Command
         command: |
           python3 script.py error
-        timeoutInSeconds: 400
+        timeoutInSeconds: 60
   
   - type: Command
     name: end
